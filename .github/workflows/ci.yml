@@ -55,12 +55,18 @@ jobs:
         username: ${{ secrets.DOCKER_USER_NAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
-    - name: Build and push
-      uses: docker/build-push-action@v3
-      with:
-        # context: .
-        push: ${{ github.event_name != 'pull_request' }}
-        tags: ${{ steps.meta.outputs.tags }}
+    - name: Build Docker Image
+      run: docker build --tag ${{ steps.meta.outputs.tags }}
+
+    - name: Push Docker Image
+      run: docker push --tag ${{ steps.meta.outputs.tags }}
+
+    # - name: Build and push
+    #   uses: docker/build-push-action@v3
+    #   with:
+    #     # context: .
+    #     push: ${{ github.event_name != 'pull_request' }}
+    #     tags: ${{ steps.meta.outputs.tags }}
         
     - name: Inspect
       run: docker image inspect ${{ steps.meta.outputs.tags }}
