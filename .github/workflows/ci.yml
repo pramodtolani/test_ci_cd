@@ -46,7 +46,7 @@ jobs:
       id: meta
       uses: docker/metadata-action@v4
       with:
-        images: pramodtolani/test_ci_cd
+        images: pramodtolani/test_cicd
 
     - name: Login to DockerHub
       if: github.event_name != 'pull_request'
