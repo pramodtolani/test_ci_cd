@@ -34,11 +34,11 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     
-    # - name: Docker meta
-    #     id: meta
-    #     uses: docker/metadata-action@v4
-    #     with:
-    #       images: pramodtolani/test_ci_cd
+    - name: Docker meta
+      id: meta
+      uses: docker/metadata-action@v4
+      with:
+        images: pramodtolani/test_ci_cd
 
     # - name: Login to DockerHub
     #   if: github.event_name != 'pull_request'
